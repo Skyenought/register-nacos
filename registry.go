@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package registry
+package registry_nacos
 
 import (
 	"errors"
@@ -28,21 +28,6 @@ import (
 )
 
 var _ registry.Registry = (*nacosRegistry)(nil)
-
-type (
-	options struct {
-		cluster string
-		group   string
-	}
-
-	// Option is nacos option.
-	Option func(o *options)
-
-	nacosRegistry struct {
-		client naming_client.INamingClient
-		opts   options
-	}
-)
 
 func (n *nacosRegistry) Register(info *registry.Info) error {
 	if info == nil {
@@ -129,20 +114,6 @@ func (n *nacosRegistry) Deregister(info *registry.Info) error {
 		return err
 	}
 	return nil
-}
-
-// WithCluster with cluster option.
-func WithCluster(cluster string) Option {
-	return func(o *options) {
-		o.cluster = cluster
-	}
-}
-
-// WithGroup with group option.
-func WithGroup(group string) Option {
-	return func(o *options) {
-		o.group = group
-	}
 }
 
 // NewDefaultNacosRegistry create a default service registry using nacos.

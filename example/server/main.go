@@ -17,12 +17,13 @@ package main
 import (
 	"context"
 
+	nacosRegistry "github.com/hertz-contrib/registry-nacos"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/app/server/registry"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-	nacosRegistry "github.com/hertz-contrib/registry-nacos/registry"
 )
 
 func main() {

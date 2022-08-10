@@ -83,17 +83,17 @@ go run server/main.go
 go run client/main.go
 ```
 
-```go
-2022/07/26 13:52:47.310617 main.go:46: [Info] code =200, body ={"ping":"pong2"}
-2022/07/26 13:52:47.311019 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311186 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311318 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311445 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311585 main.go:46: [Info] code = 200, body ={"ping":"pong2"}
-2022/07/26 13:52:47.311728 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311858 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.311977 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
-2022/07/26 13:52:47.312107 main.go:46: [Info] code = 200, body ={"ping":"pong1"}
+```bash
+2022/07/26 13:52:47.310617 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311019 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311186 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311318 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311445 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311585 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311728 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311858 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.311977 main.go:46: [Info] code = 200, body ={"ping":"pong"}
+2022/07/26 13:52:47.312107 main.go:46: [Info] code = 200, body ={"ping":"pong"}
 ```
 
 ## 自定义 Nacos Client 配置

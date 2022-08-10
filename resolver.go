@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package resolver
+package registry_nacos
 
 import (
 	"context"
@@ -26,20 +26,6 @@ import (
 )
 
 var _ discovery.Resolver = (*nacosResolver)(nil)
-
-type (
-	options struct {
-		cluster string
-		group   string
-	}
-
-	Option func(o *options)
-
-	nacosResolver struct {
-		client naming_client.INamingClient
-		opts   options
-	}
-)
 
 func (n *nacosResolver) Target(_ context.Context, target *discovery.TargetInfo) string {
 	return target.Host
@@ -77,16 +63,6 @@ func (n *nacosResolver) Resolve(_ context.Context, desc string) (discovery.Resul
 
 func (n *nacosResolver) Name() string {
 	return "nacos" + ":" + n.opts.cluster + ":" + n.opts.group
-}
-
-// WithCluster with cluster option.
-func WithCluster(cluster string) Option {
-	return func(o *options) { o.cluster = cluster }
-}
-
-// WithGroup with group option.
-func WithGroup(group string) Option {
-	return func(o *options) { o.group = group }
 }
 
 // NewDefaultNacosResolver create a default service resolver using nacos.

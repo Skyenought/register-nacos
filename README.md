@@ -198,7 +198,7 @@ func main() {
 	}
 	r := nacos_demo.NewNacosResolver(naocsCli)
 	cli.Use(sd.Discovery(r))
-	//
+	// ...
 }
 
 ```

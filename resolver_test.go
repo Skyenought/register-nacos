@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package resolver
+package registry_nacos
 
 import (
 	"context"
@@ -25,12 +25,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/cloudwego/hertz/pkg/app/server/registry"
-	"github.com/hertz-contrib/registry-nacos/internal/nacos"
-	nacosregistry "github.com/hertz-contrib/registry-nacos/registry"
-	"github.com/nacos-group/nacos-sdk-go/clients"
 	"github.com/nacos-group/nacos-sdk-go/clients/naming_client"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/vo"
 )
 
 var (
@@ -51,33 +46,12 @@ func init() {
 		return
 	}
 	time.Sleep(time.Second)
-	err = nacosregistry.NewNacosRegistry(cli).Register(svcInfo)
+	err = NewNacosRegistry(cli).Register(svcInfo)
 	if err != nil {
 		return
 	}
 	time.Sleep(time.Second)
 	nacosCli = cli
-}
-
-func getNacosClient() (naming_client.INamingClient, error) {
-	sc := []constant.ServerConfig{
-		*constant.NewServerConfig("127.0.0.1", 8848),
-	}
-
-	cc := constant.ClientConfig{
-		NamespaceId:         "public",
-		TimeoutMs:           5000,
-		NotLoadCacheAtStart: true,
-		CacheDir:            "/tmp/nacos/cache",
-		CustomLogger:        nacos.NewCustomNacosLogger(),
-	}
-
-	return clients.NewNamingClient(
-		vo.NacosClientParam{
-			ClientConfig:  &cc,
-			ServerConfigs: sc,
-		},
-	)
 }
 
 // TestNacosResolverResolve test Resolve a service
@@ -130,7 +104,7 @@ func TestNacosResolverResolve(t *testing.T) {
 		})
 	}
 
-	err := nacosregistry.NewNacosRegistry(nacosCli).Deregister(svcInfo)
+	err := NewNacosRegistry(nacosCli).Deregister(svcInfo)
 	if err != nil {
 		t.Errorf("Deregister Fail")
 		return

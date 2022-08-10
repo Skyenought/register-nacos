@@ -17,11 +17,12 @@ package main
 import (
 	"context"
 
+	"github.com/hertz-contrib/registry-nacos"
+
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/app/middlewares/client/sd"
 	"github.com/cloudwego/hertz/pkg/common/config"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
-	"github.com/hertz-contrib/registry-nacos/resolver"
 )
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	client.Use(sd.Discovery(resolver.NewDefaultNacosResolver()))
+	client.Use(sd.Discovery(registry_nacos.NewDefaultNacosResolver()))
 	for i := 0; i < 10; i++ {
 		status, body, err := client.Get(context.Background(), nil, "http://hertz.test.demo/ping", config.WithSD(true))
 		if err != nil {
